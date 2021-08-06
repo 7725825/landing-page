@@ -3,7 +3,7 @@ name: Docker-Build-LP-And-Push-To-ECR
 on:
   push:
     branches: 
-      - test
+      - development
       
 jobs:
   BuildAndPublish:
@@ -28,7 +28,7 @@ jobs:
       run: docker build -t landing-page .
         
     - name: TAG dockerimage
-      run: docker tag landing-page:latest public.ecr.aws/k4s3o9y8/landing-page:latest
+      run: docker tag landing-page:latest public.ecr.aws/k4s3o9y8/landing-page:dev-latest
         
     - name: PUSH dockerimage to ECR
-      run: docker push public.ecr.aws/k4s3o9y8/landing-page:latest
+      run: docker push public.ecr.aws/k4s3o9y8/landing-page:dev-latest

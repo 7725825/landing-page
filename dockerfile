@@ -1,5 +1,10 @@
 FROM node:14-alpine
-COPY . ./
+WORKDIR /landing
+RUN chown node:node ./
+USER node
+ARG NODE_ENV=production
+ENV NODE_ENV $NODE_ENV
+COPY . ./landing
 RUN yarn
-RUN yarn install --production
+RUN yarn install
 CMD ["node", "app.js"] 
